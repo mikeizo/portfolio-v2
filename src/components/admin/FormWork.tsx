@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 import axios from 'axios'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
@@ -11,10 +12,15 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import IconButton from '@mui/material/IconButton'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
-import { MuiChipsInput, MuiChipsInputChip } from 'mui-chips-input'
+import type { MuiChipsInputChip } from 'mui-chips-input'
 import Alerts from './Alerts'
 import { AlertProps } from '@/types'
 import SubmitButton from './SubmitButton'
+
+const MuiChipsInput = dynamic(async () => {
+  const mod = await import('mui-chips-input')
+  return mod.MuiChipsInput
+}, { ssr: false })
 
 const classes = {
   photoIcon: {

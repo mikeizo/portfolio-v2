@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Layout from '@/components/layouts/default'
 import PageTitle from '@/components/PageTitle'
-import { WorkProps, WorkItems, Items } from '@/types'
+import { WorkProps, type WorkItems, Items } from '@/types'
 import { connectToDatabase } from '@/util/mongodb'
 
 export async function getStaticProps() {

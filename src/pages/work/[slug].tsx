@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import Layout from '@/components/layouts/default'
 import PageTitle from '@/components/PageTitle'
 import { WorkItem } from '@/types'
@@ -13,7 +13,6 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-SwiperCore.use([Navigation, Pagination, Autoplay])
 
 export const getServerSideProps: GetServerSideProps = async ({
   query,
@@ -59,6 +58,7 @@ export default function Work({ work }: WorkItem) {
               <Swiper
                 spaceBetween={30}
                 slidesPerView={1}
+                modules={[Navigation, Pagination, Autoplay]}
                 navigation
                 autoplay
                 pagination={{ clickable: true }}

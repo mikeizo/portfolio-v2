@@ -52,7 +52,7 @@ export default function Index() {
         sx={{
           flexWrap: 'wrap',
           display: { sm: 'flex', xs: 'block' },
-          paddingTop: { md: -10, sm: 0, xs: 20 },
+          paddingTop: { md: -10, xs: 0 },
           justifyContent: 'center',
           alignItems: 'center',
           alignContent: 'center'

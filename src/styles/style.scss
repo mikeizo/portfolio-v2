@@ -1,9 +1,11 @@
-@import 'variables';
-@import 'animation';
-@import 'components';
-@import 'navigation';
-@import 'pages';
-@import 'typography';
+@use 'sass:math';
+@use 'sass:string';
+@use 'variables' as *;
+@use 'animation' as *;
+@use 'components' as *;
+@use 'navigation' as *;
+@use 'pages' as *;
+@use 'typography' as *;
 
 /*
  * GLOBAL SETTINGS
@@ -106,13 +108,13 @@ body {
   // n is number of stars required
   @function multiple-box-shadow ($total_stars) {
     $random: 2200;
-    $value: '#{random($random)}px #{random($random)}px #FFF';
+    $value: '#{math.random($random)}px #{math.random($random)}px #FFF';
 
     @for $i from 2 through $total_stars {
-      $value: '#{$value} , #{random($random)}px #{random($random)}px #FFF';
+      $value: '#{$value} , #{math.random($random)}px #{math.random($random)}px #FFF';
     }
 
-    @return unquote($value);
+    @return string.unquote($value);
   }
 
   .stars {

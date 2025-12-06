@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import 'devicon'
 import Layout from '@/components/layouts/default'
 import PageTitle from '@/components/PageTitle'
 import ProgressCircle from '@/components/ProgressCircle'

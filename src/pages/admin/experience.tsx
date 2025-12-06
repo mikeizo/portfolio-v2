@@ -18,8 +18,6 @@ import SubmitButton from '@/components/admin/SubmitButton'
 import Title from '@/components/admin/Title'
 import { AlertProps } from '@/types'
 import { connectToDatabase } from '@/util/mongodb'
-import 'devicon'
-
 type ExperienceProps = {
   name: string
   icon: string
