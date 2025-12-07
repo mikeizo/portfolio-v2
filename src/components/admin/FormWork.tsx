@@ -12,15 +12,9 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import IconButton from '@mui/material/IconButton'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
-import type { MuiChipsInputChip } from 'mui-chips-input'
 import Alerts from './Alerts'
 import { AlertProps } from '@/types'
 import SubmitButton from './SubmitButton'
-
-const MuiChipsInput = dynamic(async () => {
-  const mod = await import('mui-chips-input')
-  return mod.MuiChipsInput
-}, { ssr: false })
 
 const classes = {
   photoIcon: {
@@ -40,7 +34,7 @@ type FormValues = {
   git?: string
   weight?: number
   description?: string
-  resources?: MuiChipsInputChip[]
+  resources?: string[]
   logo?: string
   images?: []
 }
@@ -49,8 +43,8 @@ export default function FormWork({ work, id }: FormProps) {
   const router = useRouter()
   const [submitting, setSubmitting] = useState(false)
   const [uploading, setUploading] = useState(false)
-  const [resources, setValue] = useState<MuiChipsInputChip[]>(
-    work.resources as MuiChipsInputChip[]
+  const [resources, setValue] = useState<string[]>(
+    work.resources as string[]
   )
   const [logo, setLogo] = useState(work.logo)
   const [images, setImages] = useState<string[]>(work.images ? work.images : [])
@@ -66,7 +60,7 @@ export default function FormWork({ work, id }: FormProps) {
     setAlert(false)
   }
 
-  const handleResources = (newValue: MuiChipsInputChip[]) => {
+  const handleResources = (newValue: string[]) => {
     setValue(newValue)
   }
 
@@ -202,14 +196,21 @@ export default function FormWork({ work, id }: FormProps) {
             />
           </Grid>
           <Grid item xs={12} md={10}>
-            <MuiChipsInput
-              value={resources}
-              onChange={handleResources}
+            <Controller
               name="resources"
-              label="Resources"
-              variant="outlined"
-              fullWidth
-            />
+              defaultValue={work.resources}
+              control={control}
+              render={({ field }) => (
+              <TextField
+                label="Resources"
+                variant="outlined"
+                fullWidth
+                error={errors.resources ? true : false}
+                helperText={errors.resources ? errors.resources.message : ' '}
+                {...field}
+              />
+            )}
+          />
           </Grid>
           <Grid item xs={6} md={2}>
             <Controller
