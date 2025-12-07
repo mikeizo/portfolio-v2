@@ -3,6 +3,7 @@ import { InferGetServerSidePropsType } from 'next'
 import { useForm, Controller } from 'react-hook-form'
 import axios from 'axios'
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import AdminLayout from '@/components/layouts/admin'
 import Alerts from '@/components/admin/Alerts'
@@ -72,8 +73,8 @@ export default function AdminSettings({
       <Alerts isOpen={alert} data={alertData} closeAlert={closeAlert} />
       <Title title="Settings" />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Box display="flex" flexDirection="column" gap={2}>
-          <Box>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
             <Controller
               name="email"
               defaultValue={settings.email}
@@ -90,8 +91,8 @@ export default function AdminSettings({
                 />
               )}
             />
-          </Box>
-          <Box>
+          </Grid>
+          <Grid item xs={12}>
             <Controller
               name="about"
               defaultValue={settings.about}
@@ -107,8 +108,8 @@ export default function AdminSettings({
                 />
               )}
             />
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
         <Box sx={{ mt: 3 }}>
           <SubmitButton submitting={submitting} />
         </Box>

@@ -4,6 +4,7 @@ import axios from 'axios'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
+import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
 import Menu from '@mui/material/Menu'
@@ -192,8 +193,8 @@ export default function Admin({ children }: Props) {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <div>
-                            <Paper
+            <Grid item xs={12}>
+              <Paper
                 sx={{
                   p: 3,
                   display: 'flex',
@@ -202,7 +203,7 @@ export default function Admin({ children }: Props) {
               >
                 {children}
               </Paper>
-            </div>
+            </Grid>
           </Container>
         </Box>
       </Box>

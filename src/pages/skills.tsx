@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import Layout from '@/components/layouts/default'
 import PageTitle from '@/components/PageTitle'
 import ProgressCircle from '@/components/ProgressCircle'
@@ -28,9 +29,11 @@ export async function getStaticProps() {
 function SkillItems({ items }: Items) {
   const skillItems = items.map((item, index) => {
     return (
-      <Box key={index} textAlign="center" className="skill-item" m={2}>
-        <ProgressCircle data={item} />
-      </Box>
+      <Grid key={index} item xs={6} sm={6} md={3}>
+        <Box textAlign="center" className="skill-item">
+          <ProgressCircle data={item} />
+        </Box>
+      </Grid>
     )
   })
 
@@ -57,14 +60,9 @@ export default function Skills({ skills, experience }: SkillsProps) {
         <title>{`Skills | ${process.env.siteTitle}`}</title>
       </Head>
       <PageTitle>Skills</PageTitle>
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="center"
-        gap={5}
-      >
+      <Grid container spacing={5} justifyContent="center">
         <SkillItems items={skills} />
-      </Box>
+      </Grid>
       <Box textAlign="center" pt={10} pb={2}>
         <h3>I Have Experience With:</h3>
       </Box>

@@ -4,6 +4,7 @@ import axios from 'axios'
 import Box from '@mui/material/Box'
 import AddIcon from '@mui/icons-material/Add'
 import Fab from '@mui/material/Fab'
+import Grid from '@mui/material/Grid'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
@@ -129,9 +130,9 @@ export default function AdminExperience({
       <Alerts isOpen={alert} data={alertData} closeAlert={closeAlert} />
       <Title title="Experience" />
       <form onSubmit={onSubmit} id="experience-form">
-        <Box display="flex" flexWrap="wrap" gap={2} mb={3}>
+        <Grid container spacing={2}>
           {experiences.map((item: ExperienceProps, index: number) => (
-            <Box key={index} width={{ xs: '50%', sm: '25%', md: '16.6%' }}>
+            <Grid key={index} item xs={6} sm={3} md={2}>
               <Box
                 textAlign="center"
                 sx={{
@@ -152,11 +153,14 @@ export default function AdminExperience({
                   <HighlightOffIcon />
                 </IconButton>
               </Box>
-            </Box>
+            </Grid>
           ))}
-        </Box>
-        <Box display="flex" flexWrap="wrap" gap={2} mb={3}>
-          <Box flex="1 1 40%">
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <h4>Add Experience</h4>
+          </Grid>
+          <Grid item xs={12} sm={5}>
             <TextField
               name="name"
               value={input.name}
@@ -167,8 +171,8 @@ export default function AdminExperience({
               error={error ? true : false}
               helperText={error ? 'Name is required' : ' '}
             />
-          </Box>
-          <Box flex="1 1 40%">
+          </Grid>
+          <Grid item xs={12} sm={5}>
             <TextField
               name="icon"
               value={input.icon}
@@ -179,14 +183,14 @@ export default function AdminExperience({
               error={error ? true : false}
               helperText={error ? 'Icon is required' : ' '}
             />
-          </Box>
-          <Box flex="0 0 auto" display="flex" alignItems="center">
+          </Grid>
+          <Grid item xs={12} sm={2}>
             <Fab color="primary" aria-label="add" onClick={addExperience}>
               <AddIcon />
             </Fab>
-          </Box>
-        </Box>
-        <Box>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
           <List>
             {add.map((item: ExperienceProps, index: number) => (
               <ListItem key={index}>
@@ -204,7 +208,7 @@ export default function AdminExperience({
               </ListItem>
             ))}
           </List>
-        </Box>
+        </Grid>
         <SubmitButton submitting={submitting} />
       </form>
     </AdminLayout>

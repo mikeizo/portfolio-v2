@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react'
 import { InferGetServerSidePropsType } from 'next'
 import axios from 'axios'
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 import Alerts from '@/components/admin/Alerts'
@@ -80,24 +81,26 @@ export default function AdminSkills({
       <Alerts isOpen={alert} data={alertData} closeAlert={closeAlert} />
       <Title title="Skills" />
       <form onSubmit={onSubmit}>
-        <Box display="flex" flexWrap="wrap" gap={5}>
+        <Grid container spacing={5}>
           {values.map((item: skillProps, index: number) => (
-            <Box key={index} flex="1 1 50%" textAlign="center">
-              <Typography gutterBottom>{item.name}</Typography>
-              <Slider
-                onChange={(e, newValue) => {
-                  handleSliderChange(index, e, newValue)
-                }}
-                defaultValue={item.percent}
-                aria-labelledby="discrete-slider-always"
-                step={5}
-                min={0}
-                max={100}
-                valueLabelDisplay="on"
-              />
-            </Box>
+            <Grid key={index} item xs={12} sm={6}>
+              <Box textAlign="center">
+                <Typography gutterBottom>{item.name}</Typography>
+                <Slider
+                  onChange={(e, newValue) => {
+                    handleSliderChange(index, e, newValue)
+                  }}
+                  defaultValue={item.percent}
+                  aria-labelledby="discrete-slider-always"
+                  step={5}
+                  min={0}
+                  max={100}
+                  valueLabelDisplay="on"
+                />
+              </Box>
+            </Grid>
           ))}
-        </Box>
+        </Grid>
         <SubmitButton submitting={submitting} />
       </form>
     </AdminLayout>

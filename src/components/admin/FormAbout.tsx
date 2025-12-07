@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Alerts from './Alerts'
 import SubmitButton from './SubmitButton'
@@ -62,8 +63,8 @@ export default function FormAbout({ about, id }: FormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Alerts isOpen={alert} data={alertData} closeAlert={closeAlert} />
-      <div>
-        <div>
+      <Grid container spacing={4}>
+        <Grid item sm={6}>
           <Controller
             name="year_from"
             defaultValue={about.year_from}
@@ -86,8 +87,8 @@ export default function FormAbout({ about, id }: FormProps) {
               />
             )}
           />
-        </div>
-        <div>
+        </Grid>
+        <Grid item sm={6}>
           <Controller
             name="year_to"
             defaultValue={about.year_to}
@@ -109,8 +110,8 @@ export default function FormAbout({ about, id }: FormProps) {
               />
             )}
           />
-        </div>
-        <div>
+        </Grid>
+        <Grid item sm={12}>
           <Controller
             name="description"
             defaultValue={about.description}
@@ -141,8 +142,8 @@ export default function FormAbout({ about, id }: FormProps) {
               />
             )}
           />
-        </div>
-      </div>
+        </Grid>
+      </Grid>
       <SubmitButton submitting={submitting} />
     </form>
   )

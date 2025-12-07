@@ -10,6 +10,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import IconButton from '@mui/material/IconButton'
+import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import type { MuiChipsInputChip } from 'mui-chips-input'
 import Alerts from './Alerts'
@@ -142,9 +143,9 @@ export default function FormWork({ work, id }: FormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Alerts isOpen={alert} data={alertData} closeAlert={closeAlert} />
-      <div>
-        <div>
-          <div>
+      <Grid container spacing={4}>
+        <Grid item spacing={2} container xs={12} md={8}>
+          <Grid item xs={12} md={6}>
             <Controller
               name="name"
               defaultValue={work.name}
@@ -171,8 +172,8 @@ export default function FormWork({ work, id }: FormProps) {
                 />
               )}
             />
-          </div>
-          <div>
+          </Grid>
+          <Grid item xs={12} md={6}>
             <Controller
               name="slug"
               defaultValue={work.slug}
@@ -199,8 +200,8 @@ export default function FormWork({ work, id }: FormProps) {
                 />
               )}
             />
-          </div>
-          <div>
+          </Grid>
+          <Grid item xs={12} md={10}>
             <MuiChipsInput
               value={resources}
               onChange={handleResources}
@@ -209,8 +210,8 @@ export default function FormWork({ work, id }: FormProps) {
               variant="outlined"
               fullWidth
             />
-          </div>
-          <div>
+          </Grid>
+          <Grid item xs={6} md={2}>
             <Controller
               name="weight"
               defaultValue={work.weight}
@@ -234,9 +235,9 @@ export default function FormWork({ work, id }: FormProps) {
                 />
               )}
             />
-          </div>
-        </div>
-        <div style={{ textAlign: 'center' }}>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} md={4} sx={{ textAlign: 'center' }}>
           <h4>Logo:</h4>
           {logo && (
             <img
@@ -260,8 +261,8 @@ export default function FormWork({ work, id }: FormProps) {
               </Button>
             </label>
           </div>
-        </div>
-        <div>
+        </Grid>
+        <Grid item xs={12} md={6}>
           <Controller
             name="url"
             defaultValue={work.url || ''}
@@ -270,8 +271,8 @@ export default function FormWork({ work, id }: FormProps) {
               <TextField label="Url" variant="outlined" fullWidth {...field} />
             )}
           />
-        </div>
-        <div>
+        </Grid>
+        <Grid item xs={12} md={6}>
           <Controller
             name="git"
             defaultValue={work.git || ''}
@@ -280,8 +281,8 @@ export default function FormWork({ work, id }: FormProps) {
               <TextField label="Git" variant="outlined" fullWidth {...field} />
             )}
           />
-        </div>
-        <div>
+        </Grid>
+        <Grid item xs={12}>
           <Controller
             name="description"
             defaultValue={work.description || ''}
@@ -297,11 +298,11 @@ export default function FormWork({ work, id }: FormProps) {
               />
             )}
           />
-        </div>
-         {images &&
+        </Grid>
+        {images &&
           images.map((image, index) => {
             return (
-              <div key={image}>
+              <Grid item xs={12} sm={6} md={3} key={image}>
                 <Card sx={{ position: 'relative' }}>
                   <CardMedia
                     sx={{
@@ -321,10 +322,10 @@ export default function FormWork({ work, id }: FormProps) {
                     <HighlightOffIcon />
                   </IconButton>
                 </Card>
-              </div>
+              </Grid>
             )
           })}
-        <div>
+        <Grid item xs={12}>
           <h4>Upload Images</h4>
           <input
             id="images-files"
@@ -343,8 +344,8 @@ export default function FormWork({ work, id }: FormProps) {
               Upload
             </Button>
           </label>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
       <SubmitButton submitting={submitting} />
     </form>
   )
