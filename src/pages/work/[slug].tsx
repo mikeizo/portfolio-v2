@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import Layout from '@/components/layouts/default'
@@ -49,11 +48,10 @@ export default function Work({ work }: WorkItem) {
       </Head>
       <PageTitle>{work.name}</PageTitle>
       <Box mb={5}>
-        <Grid container spacing={0}>
-          <Grid className="description" item xs={12}>
-            <p>{work.description}</p>
-          </Grid>
-          <Grid className="carousel" item xs={12} md={9}>
+        <Box className="description" mb={3}>
+          <p>{work.description}</p>
+        </Box>
+        <Box className="carousel" mb={3}>
             {work.images ? (
               <Swiper
                 spaceBetween={30}
@@ -78,8 +76,8 @@ export default function Work({ work }: WorkItem) {
                 <img className="img-fluid" src="/img/default.gif" />
               </Box>
             )}
-          </Grid>
-          <Grid item xs={12} md={3}>
+          </Box>
+          <Box>
             <h2>Info</h2>
             <hr />
             {work.url && (
@@ -108,8 +106,7 @@ export default function Work({ work }: WorkItem) {
                 </ul>
               </Box>
             )}
-          </Grid>
-        </Grid>
+          </Box>
       </Box>
     </Layout>
   )

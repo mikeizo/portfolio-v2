@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
-import Grid from '@mui/material/Grid'
 import { gsap } from 'gsap/dist/gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Layout from '@/components/layouts/default'
@@ -97,53 +96,43 @@ export default function About({ settings, about }: AboutProps) {
     const timelineItems = items.map(
       ({ _id, year_from, year_to, description, image }) => {
         return (
-          <Grid
-            container
-            key={_id}
-            className="timeline-item"
-            justifyContent="center"
-          >
-            <Grid item sm={12} md={2}>
-              <Box
-                className="timeline-year"
-                display="flex"
-                flexWrap="wrap"
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                {year_to ? (
-                  <>
-                    <Box>{year_from}</Box>
-                    <Box>
-                      <span>to</span>
-                    </Box>
-                    <Box>{year_to}</Box>
-                  </>
-                ) : (
+          <div key={_id} className="timeline-item">
+            <Box
+              className="timeline-year"
+              display="flex"
+              flexWrap="wrap"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              {year_to ? (
+                <>
                   <Box>{year_from}</Box>
+                  <Box>
+                    <span>to</span>
+                  </Box>
+                  <Box>{year_to}</Box>
+                </>
+              ) : (
+                <Box>{year_from}</Box>
+              )}
+            </Box>
+            <Box
+              className="timeline-description"
+              display="flex"
+              alignItems="center"
+            >
+              <Box>
+                {description}
+                {image && (
+                  <>
+                    <span>&nbsp;-&nbsp;</span>
+                    <a onClick={() => openDialog(image)}>View</a>
+                  </>
                 )}
               </Box>
-            </Grid>
-            <Grid item sm={12} md={1}></Grid>
-            <Grid item sm={12} md={8}>
-              <Box
-                className="timeline-description"
-                display="flex"
-                alignItems="center"
-              >
-                <Box>
-                  {description}
-                  {image && (
-                    <>
-                      <span>&nbsp;-&nbsp;</span>
-                      <a onClick={() => openDialog(image)}>View</a>
-                    </>
-                  )}
-                </Box>
-              </Box>
-            </Grid>
-          </Grid>
+            </Box>
+          </div>
         )
       }
     )
@@ -156,20 +145,18 @@ export default function About({ settings, about }: AboutProps) {
         <title>{`About | ${process.env.siteTitle}`}</title>
       </Head>
       <PageTitle>About Me</PageTitle>
-      <Grid container spacing={5} justifyContent="space-between">
-        <Grid item xs={12} sm={8} md={8}>
+      <Box display="flex" flexWrap="wrap" justifyContent="space-between" mb={5}>
+        <Box flex="1 1 60%" pr={2} mb={2}>
           <div dangerouslySetInnerHTML={{ __html: settings.about }} />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Box textAlign="center">
-            <img
-              className="img-fluid about-photo"
-              src="/img/mike-tropea.jpg"
-              alt="Mike Tropea"
-            />
-          </Box>
-        </Grid>
-      </Grid>
+        </Box>
+        <Box flex="1 1 30%" textAlign="center">
+          <img
+            className="img-fluid about-photo"
+            src="/img/mike-tropea.jpg"
+            alt="Mike Tropea"
+          />
+        </Box>
+      </Box>
 
       <Box textAlign="center" my={10}>
         <h2 className="message">My Journey</h2>

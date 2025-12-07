@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Layout from '@/components/layouts/default'
 import PageTitle from '@/components/PageTitle'
@@ -28,7 +27,7 @@ export async function getStaticProps() {
 function WorkItems({ items }: Items) {
   const workItems = items.map(({ _id, slug, name, logo }: WorkItems) => {
     return (
-      <Grid item key={_id} xs={12} sm={6} md={4}>
+      <Box key={_id} sx={{ width: { xs: '100%', sm: '50%', md: '33%' }, p: 2 }}>
         <Link href={`work/[slug]`} as={`work/${slug}`}>
           <Box className="work-item">
             <img
@@ -41,7 +40,7 @@ function WorkItems({ items }: Items) {
             <p>{name}</p>
           </Box>
         </Link>
-      </Grid>
+      </Box>
     )
   })
 
@@ -55,9 +54,12 @@ export default function Work({ work }: WorkProps) {
         <title>{`Work | ${process.env.siteTitle}`}</title>
       </Head>
       <PageTitle>Work</PageTitle>
-      <Grid container spacing={4} id="work">
+      <Box
+        id="work"
+        sx={{ display: 'flex', flexWrap: 'wrap', mx: -2 }}
+      >
         <WorkItems items={work} />
-      </Grid>
+      </Box>
     </Layout>
   )
 }
